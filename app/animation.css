@@ -1,0 +1,336 @@
+/* ============ Custom property (animated conic border) ============ */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ============ Keyframes ============ */
+@keyframes auroraShift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      50% 100%,
+      0 0;
+  }
+  33% {
+    background-position:
+      100% 60%,
+      0% 40%,
+      20% 0%,
+      0 0;
+  }
+  66% {
+    background-position:
+      60% 100%,
+      40% 100%,
+      100% 30%,
+      0 0;
+  }
+  100% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      50% 100%,
+      0 0;
+  }
+}
+
+@keyframes blobFloatA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    filter: blur(80px) hue-rotate(0deg);
+  }
+  33% {
+    transform: translate(8vw, 12vh) scale(1.2) rotate(40deg);
+    filter: blur(80px) hue-rotate(50deg);
+  }
+  66% {
+    transform: translate(-6vw, 20vh) scale(0.95) rotate(90deg);
+    filter: blur(80px) hue-rotate(-30deg);
+  }
+}
+
+@keyframes blobFloatB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    filter: blur(90px) hue-rotate(0deg);
+  }
+  50% {
+    transform: translate(-12vw, -14vh) scale(1.25);
+    filter: blur(90px) hue-rotate(70deg);
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 48px 48px;
+  }
+}
+
+@keyframes sparkleRise {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0;
+  }
+  to {
+    background-position:
+      0 -300px,
+      0 -450px,
+      0 -600px;
+  }
+}
+
+@keyframes borderSpin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.94) rotateX(8deg);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cardSheen {
+  0%,
+  55% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(480%) skewX(-20deg);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(94, 234, 212, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(192, 132, 252, 0.6));
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 6px 12px rgba(139, 92, 246, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 8px 26px rgba(52, 211, 153, 0.6));
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-1deg);
+  }
+  70% {
+    transform: scale(1.04) rotate(0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes shineSweep {
+  from {
+    transform: translateX(-120%) skewX(-20deg);
+  }
+  to {
+    transform: translateX(300%) skewX(-20deg);
+  }
+}
+
+@keyframes scanSweep {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(420%);
+  }
+}
+
+/* ============ Animation usage ============ */
+/* Background */
+body {
+  animation: auroraShift 24s ease-in-out infinite;
+}
+html::before {
+  animation: gridDrift 6s linear infinite;
+}
+html::after {
+  animation: sparkleRise 40s linear infinite;
+}
+body::before {
+  animation: blobFloatA 20s ease-in-out infinite;
+}
+body::after {
+  animation: blobFloatB 26s ease-in-out infinite;
+}
+
+/* Card */
+.card {
+  animation:
+    cardIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards,
+    cardFloat 7s ease-in-out 0.9s infinite;
+}
+.card::before {
+  animation: borderSpin 6s linear infinite;
+}
+.card::after {
+  animation: cardSheen 7s ease-in-out infinite;
+}
+
+/* Title */
+.title {
+  animation:
+    gradientFlow 7s ease infinite,
+    titleGlow 4s ease-in-out infinite;
+}
+
+/* Form items (backwards: so hover/focus transforms still work afterwards) */
+.form .input {
+  animation: fadeSlideUp 0.6s ease backwards;
+}
+.form .input:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+.form .input:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+.form .input:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+/* Errors */
+.field-error {
+  animation:
+    shake 0.45s ease,
+    fadeSlideUp 0.3s ease;
+}
+.alert-error {
+  animation:
+    shake 0.45s ease,
+    fadeSlideUp 0.3s ease;
+}
+
+/* Texts and dashboard */
+.label,
+.token-box,
+.switch-text {
+  animation: fadeSlideUp 0.7s ease 0.25s backwards;
+}
+
+.token-box::after {
+  animation: scanSweep 3.5s linear infinite;
+}
+.profile-box {
+  animation: popIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+/* Buttons */
+.btn-primary {
+  animation:
+    gradientFlow 6s ease infinite,
+    glowPulse 3s ease-in-out infinite;
+}
+.form .btn-primary {
+  animation:
+    fadeSlideUp 0.6s ease 0.4s backwards,
+    gradientFlow 6s ease infinite,
+    glowPulse 3s ease-in-out infinite;
+}
+.btn-primary:hover {
+  animation-duration: 2s, 1.4s;
+}
+.form .btn-primary:hover {
+  animation-duration: 0.6s, 2s, 1.4s;
+}
+
+.btn-ghost {
+  animation: fadeSlideUp 0.7s ease 0.45s backwards;
+}
+.btn:hover::after {
+  animation: shineSweep 0.8s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
